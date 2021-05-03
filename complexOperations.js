@@ -22,7 +22,7 @@ import {
 */
 export const checkEmail = (email) => {
   if (!email || !isString(email)) {
-    return 'The email should be an string';
+    return 'The email should be a string';
   }
   const isValidEmail = validateEmail(email);
   if (!isValidEmail) {
@@ -83,13 +83,13 @@ export const calculateArea = (figure, number1, number2 = 0) => {
  * @param {number} number3
  * @returns {string}
 */
-export const sumGratherThan = (number1, number2, number3) => {
+export const sumGreaterThan = (number1, number2, number3) => {
   if (!isNumber(number1) || !isNumber(number2) || !isNumber(number3)) {
     return 'The params should be numbers';
   }
   const sumResult = sum(number1, number2);
   if (sumResult > number3) {
-    return `${sumResult} is grather than ${number3}`;
+    return `${sumResult} is greater than ${number3}`;
   }
   return `${sumResult} is less than ${number3}`;
 }
@@ -133,10 +133,10 @@ export const sortArrayOfObjectsByKey = (array, key) => {
     return 'The first param should be an array';
   }
   if (!key || !isString(key)) {
-    return 'The second param should be an string';
+    return 'The second param should be a string';
   }
   if (!arrayElementsAreObjectWithKey(array, key)) {
-    return `Some elements in the array does not have the ${key} property`;
+    return `Some elements in the array do not have the ${key} property`;
   }
   return sortArrayByKey(array, key);
 }
