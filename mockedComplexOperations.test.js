@@ -11,36 +11,26 @@ describe('Mocked complexOperation', () => {
             jest.spyOn(basicOperations, 'isString').mockReturnValue(false);
             jest.spyOn(basicOperations, 'validateEmail').mockReturnValue(false);
             expect(complexOperations.checkEmail(1234)).toStrictEqual('The email should be a string');
-            expect('isString').toBeCalled;
-            expect('validateEmail').toBeCalled;
         });
         it('Test providing an empty string as input for email', () => {
             jest.spyOn(basicOperations, 'isString').mockReturnValue(false);
             jest.spyOn(basicOperations, 'validateEmail').mockReturnValue(false);
             expect(complexOperations.checkEmail()).toStrictEqual('The email should be a string');
-            expect('isString').toBeCalled;
-            expect('validateEmail').toBeCalled;
         });
         it('Test providing a string that is not a valid email', () => {
             jest.spyOn(basicOperations, 'isString').mockReturnValue(true);
             jest.spyOn(basicOperations, 'validateEmail').mockReturnValue(false);
             expect(complexOperations.checkEmail('micaela')).toBe('The email is invalid');
-            expect('isString').toBeCalled;
-            expect('validateEmail').toBeCalled;
         });
         it('Test providing an invalid email', () => {
             jest.spyOn(basicOperations, 'isString').mockReturnValue(true);
             jest.spyOn(basicOperations, 'validateEmail').mockReturnValue(false);
             expect(complexOperations.checkEmail('@')).toBe('The email is invalid');
-            expect('isString').toBeCalled;
-            expect('validateEmail').toBeCalled;
         });
         it('Test providing a valid email', () => {
             jest.spyOn(basicOperations, 'isString').mockReturnValue(true);
             jest.spyOn(basicOperations, 'validateEmail').mockReturnValue(true);
             expect(complexOperations.checkEmail('test@radiumrocket.com')).toBe('The email is valid');
-            expect('isString').toBeCalled;
-            expect('validateEmail').toBeCalled;
         });
     });
     describe('calculateArea', () => {
@@ -49,16 +39,13 @@ describe('Mocked complexOperation', () => {
         })
         it('Testing a non-supported figure', () => {
             jest.spyOn(basicOperations, 'isSupportedFigure').mockReturnValue(false);
-            expect(complexOperations.calculateArea('pentagon')).toBe('pentagon is not supported')
-            expect('isSupportedFigure').toBeCalled;
+            expect(complexOperations.calculateArea('pentagon')).toBe('pentagon is not supported');
         });
         it('Test providing invalid imputs for number1 and number2', () => {
             jest.spyOn(basicOperations, 'isSupportedFigure').mockReturnValue(true);
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
             expect(complexOperations.calculateArea('rectangle', '', 'undefined')).toBe('number1 and number2 should be numbers')
             expect(complexOperations.calculateArea('square', 'two', 'two')).toBe('number1 and number2 should be numbers')
-            expect('isSupportedFigure').toBeCalled;
-            expect('isNumber').toBeCalled;
         });
         it('Test providing valid inputs for number1 and number2(mocked)', () => {
             jest.spyOn(basicOperations, 'isSupportedFigure').mockReturnValue(true);
@@ -70,8 +57,6 @@ describe('Mocked complexOperation', () => {
             expect(complexOperations.calculateArea('rectangle', 7,5)).toEqual(50)
             expect(complexOperations.calculateArea('triangle', 7,3)).toBe(4)
             expect(complexOperations.calculateArea('circle', 9)).toBeCloseTo(6.2831)
-            expect('isSupportedFigure').toBeCalled;
-            expect('isNumber').toBeCalled;
         });
     });
     describe('sumGreaterThan', () => {
@@ -81,24 +66,20 @@ describe('Mocked complexOperation', () => {
         it('Testing with params that are not numbers', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
             expect(complexOperations.sumGreaterThan('a,b,c')).toBe('The params should be numbers')
-            expect('isNumber').toBeCalled;
         });
         it('Testing with params that are not numbers', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
             expect(complexOperations.sumGreaterThan('undefined', 1,2)).toBe('The params should be numbers')
-            expect('isNumber').toBeCalled;
         });
         it('Sum number1 plus number2 mocked to return 100,should be greater than number3', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
             jest.spyOn(basicOperations, 'sum').mockReturnValue(100);
             expect(complexOperations.sumGreaterThan(50,20, 10)).toBe('100 is greater than 10')
-            expect('isNumber').toBeCalled;
         });
         it('Sum number1 plus number2 mocked to return 100,should be less than number3', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
             jest.spyOn(basicOperations, 'sum').mockReturnValue(100);
             expect(complexOperations.sumGreaterThan(50,20, 110)).toBe('100 is less than 110')
-            expect('isNumber').toBeCalled;
         });
     });
     describe('intersectionBetweenArrays', () => {
@@ -108,25 +89,21 @@ describe('Mocked complexOperation', () => {
         it('Testing intersectionBetweenArrays providing an invalid param(not an array)', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
             expect(complexOperations.intersectionBetweenArrays('one', 'two')).toBe('The params should be arrays')
-            expect('isArray').toBeCalled;
         });
         it('Test providing an empty array', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
             jest.spyOn(basicOperations, 'arrayIntersection').mockReturnValue(false);
             expect(complexOperations.intersectionBetweenArrays([], [])).toStrictEqual(false)
-            expect('isArray').toBeCalled;
         });
         it('Test providing undefined values', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
             jest.spyOn(basicOperations, 'arrayIntersection').mockReturnValue('There are not matching elements');
             expect(complexOperations.intersectionBetweenArrays([undefined],['one'])).toBe('There are not matching elements')
-            expect('isArray').toBeCalled;
         });
         it('Tests providing  a valid instersection array, (Mocked to return /mockedIntersection/)', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
             jest.spyOn(basicOperations, 'arrayIntersection').mockReturnValue('mockedIntersection');
             expect(complexOperations.intersectionBetweenArrays([1,2,3], [4,5,6])).toEqual('mockedIntersection')
-            expect('isArray').toBeCalled;
         });
     });
     describe('sortArrayOfObjectsByKey', () => {
@@ -136,14 +113,11 @@ describe('Mocked complexOperation', () => {
         it('Testing sortArrayOfObjectsByKey providing an invalid param(not an array)', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
             expect(complexOperations.sortArrayOfObjectsByKey('word', 'name')).toBe('The first param should be an array')
-            expect('isArray').toBeCalled;
         });
         it('Testing sortArrayOfObjectsByKey providing an invalid second param(not a string)', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
             jest.spyOn(basicOperations, 'isString').mockReturnValue(false);
             expect(complexOperations.sortArrayOfObjectsByKey([{name: 'Radium'}, {name:'Rocket'}], 3)).toBe('The second param should be a string')
-            expect('isArray').toBeCalled;
-            expect('isString').toBeCalled;
         });
         it('Testing sortArrayOfObjectsByKey sorting by age', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
